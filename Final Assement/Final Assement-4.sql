@@ -12,3 +12,9 @@ FROM Dbo.Suppliers
 
 
 
+SELECT  c.country, sum(A.Quantity) as TotalQuantity
+FROM dbo.[Order Details] as A
+inner Join Orders as O on O.OrderID = A.OrderID
+inner JOIN Customers C on C.CustomerID = O.CustomerID
+group by 
+    ROLLUP(country)
